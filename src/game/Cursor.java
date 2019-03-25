@@ -27,13 +27,13 @@ public class Cursor{
 		deltay = y;
 		
 		// arrow key movement commands
-		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_W)))
+		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_UP)))
 			x--;
-		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_S)))
+		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_DOWN)))
 			x++;
-		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_A)))
+		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_LEFT)))
 			y--;
-		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_D)))
+		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_RIGHT)))
 			y++;
 		
 		//make sure cursor doesn't go out of bound
@@ -43,6 +43,13 @@ public class Cursor{
 		if (y > GameOfLifeDriver.grid.getWd() - 1) y = GameOfLifeDriver.grid.getWd() - 1;
 		if (y < 0) y = 0;
 		
+		// pause button
+		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_P))) {
+			if (GameOfLifeDriver.isPaused) GameOfLifeDriver.isPaused = false;
+			else GameOfLifeDriver.isPaused = true;
+			// without code below pressing p doesn't work sometimes 
+			InputHandler.inputs.remove(new Integer(KeyEvent.VK_P));
+		}
 		
 		// space button
 		if(InputHandler.inputs.contains(new Integer(KeyEvent.VK_SPACE))) {
